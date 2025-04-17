@@ -3,9 +3,12 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu, X, Upload, History, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <nav className="bg-white/80 backdrop-blur-md border-b border-gray-100 fixed w-full z-10">
@@ -13,36 +16,38 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className="text-brand-500 font-bold text-xl">智绕 AI</span>
+              <span className="text-brand-500 font-bold text-xl">{t('app.name')}</span>
             </Link>
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
               <Link to="/" className="text-gray-700 hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium">
-                首页
+                {t('nav.home')}
               </Link>
               <Link to="/features" className="text-gray-700 hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium">
-                功能
+                {t('nav.features')}
               </Link>
               <Link to="/pricing" className="text-gray-700 hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium">
-                价格
+                {t('nav.pricing')}
               </Link>
               <Link to="/api" className="text-gray-700 hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium">
-                API
+                {t('nav.api')}
               </Link>
               <Link to="/dashboard" className="text-gray-700 hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium flex items-center">
                 <Upload className="mr-1 h-4 w-4" />
-                使用工具
+                {t('nav.useTool')}
               </Link>
+              <LanguageSwitcher />
               <Link to="/login" className="ml-2">
-                <Button variant="outline" size="sm">登录</Button>
+                <Button variant="outline" size="sm">{t('nav.login')}</Button>
               </Link>
               <Link to="/register" className="ml-2">
-                <Button className="bg-brand-500 hover:bg-brand-600" size="sm">注册</Button>
+                <Button className="bg-brand-500 hover:bg-brand-600" size="sm">{t('nav.register')}</Button>
               </Link>
             </div>
           </div>
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageSwitcher />
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -55,34 +60,34 @@ export function Navbar() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
             <Link to="/" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium">
-              首页
+              {t('nav.home')}
             </Link>
             <Link to="/features" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium">
-              功能
+              {t('nav.features')}
             </Link>
             <Link to="/pricing" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium">
-              价格
+              {t('nav.pricing')}
             </Link>
             <Link to="/api" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium">
-              API
+              {t('nav.api')}
             </Link>
             <Link to="/dashboard" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
               <Upload className="mr-1 h-4 w-4" />
-              使用工具
+              {t('nav.useTool')}
             </Link>
             <Link to="/history" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
               <History className="mr-1 h-4 w-4" />
-              历史记录
+              {t('nav.history')}
             </Link>
             <Link to="/invite" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
               <Gift className="mr-1 h-4 w-4" />
-              邀请好友
+              {t('nav.invite')}
             </Link>
             <Link to="/login" className="block w-full mt-2">
-              <Button variant="outline" className="w-full">登录</Button>
+              <Button variant="outline" className="w-full">{t('nav.login')}</Button>
             </Link>
             <Link to="/register" className="block w-full mt-2">
-              <Button className="w-full bg-brand-500 hover:bg-brand-600">注册</Button>
+              <Button className="w-full bg-brand-500 hover:bg-brand-600">{t('nav.register')}</Button>
             </Link>
           </div>
         </div>

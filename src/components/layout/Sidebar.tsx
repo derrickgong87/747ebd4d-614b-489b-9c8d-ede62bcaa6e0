@@ -1,12 +1,16 @@
+
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FileText, History, Gift, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 export function Sidebar() {
   const location = useLocation();
   const [showOtherApps, setShowOtherApps] = React.useState(false);
+  const { t } = useLanguage();
   
   // Calculate usage for the progress bar
   const wordsUsed = 2300;
@@ -21,8 +25,7 @@ export function Sidebar() {
     <div className="w-64 h-screen bg-white border-r border-gray-100 flex flex-col fixed left-0 top-0">
       {/* Logo */}
       <div className="flex items-center p-5">
-        <span className="text-brand-500 font-bold text-xl">智绕 AI</span>
-        <span className="text-gray-600 font-bold ml-2">智绕 Bypass</span>
+        <span className="text-brand-500 font-bold text-xl">{t('app.name')}</span>
       </div>
 
       {/* Main Navigation */}
@@ -36,7 +39,7 @@ export function Sidebar() {
             )}
           >
             <FileText size={20} />
-            <span>Bypass AI 检测</span>
+            <span>{t('dashboard.bypass')}</span>
           </Link>
           
           <Link
@@ -47,7 +50,7 @@ export function Sidebar() {
             )}
           >
             <History size={20} />
-            <span>历史记录</span>
+            <span>{t('dashboard.history')}</span>
           </Link>
           
           <Link
@@ -58,7 +61,7 @@ export function Sidebar() {
             )}
           >
             <Gift size={20} />
-            <span>邀请好友</span>
+            <span>{t('dashboard.invite')}</span>
           </Link>
         </nav>
       </div>
@@ -66,8 +69,8 @@ export function Sidebar() {
       {/* Plan Info */}
       <div className="px-5 py-3 border-t border-gray-100">
         <div className="mb-1 flex justify-between">
-          <span className="text-gray-700 font-medium">基础版</span>
-          <span className="text-gray-500 text-sm">{wordsUsed} / {wordsLimit} 字</span>
+          <span className="text-gray-700 font-medium">{t('dashboard.basic')}</span>
+          <span className="text-gray-500 text-sm">{wordsUsed} / {wordsLimit} {t('dashboard.words')}</span>
         </div>
         <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
           <div 
@@ -77,18 +80,21 @@ export function Sidebar() {
         </div>
         <Link to="/pricing">
           <Button className="w-full mt-3 flex items-center justify-center gap-1 bg-white border-blue-500 text-blue-500 hover:bg-blue-50" variant="outline">
-            升级 <span className="text-yellow-500">⚡</span>
+            {t('dashboard.upgrade')} <span className="text-yellow-500">⚡</span>
           </Button>
         </Link>
       </div>
 
-      {/* Other Apps Toggle */}
+      {/* Language & Other Apps Toggle */}
       <div className="px-5 py-3 border-t border-gray-100">
+        <div className="mb-3">
+          <LanguageSwitcher />
+        </div>
         <button 
           onClick={() => setShowOtherApps(!showOtherApps)}
           className="w-full flex items-center justify-between text-gray-700"
         >
-          <span>其他应用</span>
+          <span>{t('dashboard.otherApps')}</span>
           {showOtherApps ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </button>
         
