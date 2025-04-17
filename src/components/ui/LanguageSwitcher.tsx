@@ -13,6 +13,7 @@ export function LanguageSwitcher() {
       size="sm" 
       onClick={toggleLanguage} 
       className="flex items-center gap-1"
+      aria-label={t('language.switch')}
     >
       <Globe className="h-4 w-4" />
       <span>{language === 'zh' ? 'EN' : '中文'}</span>

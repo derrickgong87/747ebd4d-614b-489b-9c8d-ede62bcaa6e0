@@ -12,8 +12,11 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { MoreVertical } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function History() {
+  const { t } = useLanguage();
+
   // Mock history data
   const historyItems = [
     {
@@ -63,15 +66,15 @@ export default function History() {
   return (
     <DashboardLayout>
       <div className="p-6">
-        <h1 className="text-2xl font-semibold mb-6">历史记录</h1>
+        <h1 className="text-2xl font-semibold mb-6">{t('dashboard.history')}</h1>
         
         <Card>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[50%]">内容</TableHead>
-                <TableHead>创建日期</TableHead>
-                <TableHead>生成字数</TableHead>
+                <TableHead className="w-[50%]">{t('dashboard.history.content')}</TableHead>
+                <TableHead>{t('dashboard.history.created')}</TableHead>
+                <TableHead>{t('dashboard.history.words')}</TableHead>
                 <TableHead className="w-[50px]"></TableHead>
               </TableRow>
             </TableHeader>

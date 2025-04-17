@@ -19,6 +19,9 @@ const translations = {
   // Dashboard
   'dashboard.bypass': 'Bypass AI Detection',
   'dashboard.history': 'History',
+  'dashboard.history.content': 'Content',
+  'dashboard.history.created': 'Date Created',
+  'dashboard.history.words': 'Words Generated',
   'dashboard.invite': 'Invite Friends',
   'dashboard.basic': 'Basic Plan',
   'dashboard.words': 'words',

@@ -1,5 +1,5 @@
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import enTranslations from '@/translations/en';
 import zhTranslations from '@/translations/zh';
 
@@ -14,10 +14,24 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+// Load saved language preference from localStorage if available
+const getSavedLanguage = (): Language => {
+  if (typeof window !== 'undefined') {
+    const savedLanguage = localStorage.getItem('language');
+    return (savedLanguage === 'en' || savedLanguage === 'zh') ? savedLanguage : 'zh';
+  }
+  return 'zh';
+};
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('zh');
+  const [language, setLanguage] = useState<Language>(getSavedLanguage);
 
   const translations = language === 'zh' ? zhTranslations : enTranslations;
+
+  // Save language preference to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
 
   const toggleLanguage = () => {
     setLanguage(prevLang => prevLang === 'zh' ? 'en' : 'zh');

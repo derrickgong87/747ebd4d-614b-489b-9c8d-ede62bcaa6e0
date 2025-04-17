@@ -19,6 +19,9 @@ const translations = {
   // Dashboard
   'dashboard.bypass': 'Bypass AI 检测',
   'dashboard.history': '历史记录',
+  'dashboard.history.content': '内容',
+  'dashboard.history.created': '创建日期',
+  'dashboard.history.words': '生成字数',
   'dashboard.invite': '邀请好友',
   'dashboard.basic': '基础版',
   'dashboard.words': '字',
