@@ -12,6 +12,9 @@ import Features from "./pages/Features";
 import Api from "./pages/Api";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import History from "./pages/History";
+import Invite from "./pages/Invite";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +31,9 @@ const App = () => (
           <Route path="/api" element={<Api />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/invite" element={<Invite />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

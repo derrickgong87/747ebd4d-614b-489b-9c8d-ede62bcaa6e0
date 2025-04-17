@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Upload, History, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function Navbar() {
@@ -29,6 +29,10 @@ export function Navbar() {
               </Link>
               <Link to="/api" className="text-gray-700 hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium">
                 API
+              </Link>
+              <Link to="/dashboard" className="text-gray-700 hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                <Upload className="mr-1 h-4 w-4" />
+                使用工具
               </Link>
               <Link to="/login" className="ml-2">
                 <Button variant="outline" size="sm">登录</Button>
@@ -61,6 +65,18 @@ export function Navbar() {
             </Link>
             <Link to="/api" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium">
               API
+            </Link>
+            <Link to="/dashboard" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
+              <Upload className="mr-1 h-4 w-4" />
+              使用工具
+            </Link>
+            <Link to="/history" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
+              <History className="mr-1 h-4 w-4" />
+              历史记录
+            </Link>
+            <Link to="/invite" className="text-gray-700 hover:text-brand-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
+              <Gift className="mr-1 h-4 w-4" />
+              邀请好友
             </Link>
             <Link to="/login" className="block w-full mt-2">
               <Button variant="outline" className="w-full">登录</Button>
