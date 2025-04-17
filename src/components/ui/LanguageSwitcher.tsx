@@ -16,7 +16,7 @@ export function LanguageSwitcher() {
       aria-label={t('language.switch')}
     >
       <Globe className="h-4 w-4" />
-      <span>{language === 'zh' ? 'EN' : '中文'}</span>
+      <span>{language === 'en' ? '中文' : 'EN'}</span>
     </Button>
   );
 }

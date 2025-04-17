@@ -25,16 +25,30 @@ const getSavedLanguage = (): Language => {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>(getSavedLanguage);
-
+  const [mounted, setMounted] = useState(false);
+  
   const translations = language === 'zh' ? zhTranslations : enTranslations;
+
+  // Only run this effect client-side
+  useEffect(() => {
+    setMounted(true);
+    const savedLang = getSavedLanguage();
+    setLanguage(savedLang);
+  }, []);
 
   // Save language preference to localStorage when it changes
   useEffect(() => {
-    localStorage.setItem('language', language);
-  }, [language]);
+    if (mounted) {
+      localStorage.setItem('language', language);
+    }
+  }, [language, mounted]);
 
   const toggleLanguage = () => {
-    setLanguage(prevLang => prevLang === 'zh' ? 'en' : 'zh');
+    setLanguage(prevLang => {
+      const newLang = prevLang === 'zh' ? 'en' : 'zh';
+      console.log(`Language switched from ${prevLang} to ${newLang}`);
+      return newLang;
+    });
   };
 
   const t = (key: keyof typeof zhTranslations): string => {
