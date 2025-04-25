@@ -1,12 +1,12 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { AIDetectionIcon, ShieldIcon, SpeedIcon } from "@/components/ui/icons";
-import { ArrowRight, CheckCircle, MessageSquare, Terminal, Zap } from "lucide-react";
+import { ArrowRight, Plus, Image as ImageIcon, Edit, MessageSquare, Terminal, Zap } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Textarea } from "@/components/ui/textarea";
 
 const Index = () => {
   const [inputText, setInputText] = useState("");
@@ -14,8 +14,6 @@ const Index = () => {
   const { t } = useLanguage();
   
   const handleBypass = () => {
-    // This would be connected to a real backend in production
-    // Mock response for demonstration
     setOutputText(
       inputText
         .split("")
@@ -28,83 +26,83 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="pt-28 pb-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              {t('home.hero.title')}
-            </h1>
-            <p className="mt-6 text-xl max-w-2xl mx-auto text-gray-600">
-              {t('home.hero.subtitle')}
-            </p>
-            <div className="mt-10">
-              <Link to="/register">
-                <Button size="lg" className="bg-brand-500 hover:bg-brand-600">
-                  {t('home.startNow')} <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Link to="/features" className="ml-4">
-                <Button size="lg" variant="outline">
-                  {t('home.learnMore')}
-                </Button>
-              </Link>
+      {/* Hero Section with Actions */}
+      <section className="pt-8 pb-6 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center gap-4 mb-6">
+              <input
+                type="text"
+                placeholder={t('home.askPlaceholder')}
+                className="flex-1 bg-transparent text-xl font-medium outline-none"
+                defaultValue="Ask Lovable..."
+              />
+              <div className="flex items-center gap-3">
+                <button className="button-modern">
+                  <Plus className="w-5 h-5" />
+                </button>
+                <button className="button-modern">
+                  <ImageIcon className="w-5 h-5" />
+                  <span>Attach</span>
+                </button>
+                <button className="button-modern">
+                  <Edit className="w-5 h-5" />
+                  <span>Edit</span>
+                </button>
+                <button className="button-modern">
+                  <MessageSquare className="w-5 h-5" />
+                  <span>Chat</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Demo Section */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900">{t('home.demo.title')}</h2>
-            <p className="mt-4 text-lg text-gray-600">{t('home.demo.subtitle')}</p>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('home.demo.input')}
-                </label>
-                <textarea
-                  className="w-full h-64 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
-                  placeholder={t('home.demo.input')}
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                ></textarea>
-              </div>
-              
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    {t('home.demo.output')}
-                  </label>
-                  <span className="text-xs text-gray-500">0% {t('home.demo.probability')}</span>
-                </div>
-                <textarea
-                  className="w-full h-64 p-3 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
-                  readOnly
-                  value={outputText}
-                  placeholder={t('home.demo.output')}
-                ></textarea>
-              </div>
+      {/* Demo Section with Beige Textboxes */}
+      <section className="py-8 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {t('home.demo.input')}
+              </label>
+              <Textarea
+                className="textbox-beige min-h-[240px] p-4"
+                placeholder={t('home.demo.inputPlaceholder')}
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+              />
             </div>
             
-            <div className="mt-6 text-center">
-              <Button 
-                size="lg" 
-                className="bg-brand-500 hover:bg-brand-600"
-                onClick={handleBypass}
-                disabled={!inputText}
-              >
-                {t('home.demo.button')} <Zap className="ml-2 h-4 w-4" />
-              </Button>
-              <p className="mt-4 text-sm text-gray-500">
-                {t('home.demo.limit')}
-              </p>
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  {t('home.demo.output')}
+                </label>
+                <span className="text-xs text-gray-500">0% {t('home.demo.probability')}</span>
+              </div>
+              <Textarea
+                className="textbox-beige min-h-[240px] p-4"
+                readOnly
+                value={outputText}
+                placeholder={t('home.demo.outputPlaceholder')}
+              />
             </div>
+          </div>
+          
+          <div className="mt-6 text-center">
+            <Button 
+              size="lg" 
+              className="bg-brand-500 hover:bg-brand-600"
+              onClick={handleBypass}
+              disabled={!inputText}
+            >
+              {t('home.demo.button')} <Zap className="ml-2 h-4 w-4" />
+            </Button>
+            <p className="mt-4 text-sm text-gray-500">
+              {t('home.demo.limit')}
+            </p>
           </div>
         </div>
       </section>

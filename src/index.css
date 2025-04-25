@@ -94,6 +94,8 @@
 
   body {
     @apply bg-background text-foreground font-['Noto_Sans_SC'];
+    background: linear-gradient(109.6deg, rgba(223,234,247,1) 11.2%, rgba(244,248,252,1) 91.1%);
+    min-height: 100vh;
   }
 }
 
@@ -104,3 +106,16 @@
 .gradient-bg {
   background: linear-gradient(135deg, #0077ff 0%, #00d2ff 100%);
 }
+
+.textbox-beige {
+  @apply bg-[#FEF7CD] border border-gray-200 rounded-lg shadow-sm;
+}
+
+.button-modern {
+  @apply flex items-center gap-2 px-4 py-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors duration-200;
+}
+
+.icon-wrapper {
+  @apply flex items-center justify-center w-8 h-8 rounded-full bg-gray-100;
+}
+
