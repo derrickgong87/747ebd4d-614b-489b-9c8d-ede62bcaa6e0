@@ -1,9 +1,10 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { AIDetectionIcon, ShieldIcon, SpeedIcon } from "@/components/ui/icons";
-import { ArrowRight, Plus, Image as ImageIcon, Edit, MessageSquare, Terminal, Zap } from "lucide-react";
+import { ArrowRight, Plus, Image as ImageIcon, Edit, MessageSquare, Terminal, Zap, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Textarea } from "@/components/ui/textarea";
@@ -33,7 +34,7 @@ const Index = () => {
             <div className="flex items-center gap-4 mb-6">
               <input
                 type="text"
-                placeholder={t('home.askPlaceholder')}
+                placeholder={t("home.hero.title")}
                 className="flex-1 bg-transparent text-xl font-medium outline-none"
                 defaultValue="Ask Lovable..."
               />
@@ -69,7 +70,7 @@ const Index = () => {
               </label>
               <Textarea
                 className="textbox-beige min-h-[240px] p-4"
-                placeholder={t('home.demo.inputPlaceholder')}
+                placeholder={t('home.demo.input')}
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
               />
@@ -86,7 +87,7 @@ const Index = () => {
                 className="textbox-beige min-h-[240px] p-4"
                 readOnly
                 value={outputText}
-                placeholder={t('home.demo.outputPlaceholder')}
+                placeholder={t('home.demo.output')}
               />
             </div>
           </div>
